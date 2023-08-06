@@ -1,14 +1,25 @@
 {
   "name": "quecto-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "bin": {
+    "quecto": "./app.js"
+  },
+  "keywords": [
+    "quecto",
+    "cli",
+    "link-shortener",
+    "url-shortener",
+    "link",
+    "url",
+    "shortener"
+  ],
   "author": "oriionn",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "ascii-text-generator": "^1.0.5",
     "axios": "^1.4.0",
