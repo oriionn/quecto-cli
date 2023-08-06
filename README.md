@@ -56,4 +56,4 @@ Display help for a command.
 [GPL3](https://github.com/oriionn/quecto-cli/blob/main/LICENSE)
 
 ## Contributors
-[![Contributors](https://contrib.rocks/image?repo=oriionn/quecto-cli)]
+[![Contributors](https://contrib.rocks/image?repo=oriionn/quecto-cli)]()
