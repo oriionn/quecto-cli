@@ -22,6 +22,7 @@ Shorten a URL.
 
 #### Options
 - `-i, --instance <instance>`: The instance to use. (default: `https://s.oriondev.fr`) 
+- `-p, --password <password>`: The password for the shortened url. (default: `null`)
 
 ![Shorten](docs/quecto%20shorten.png)
 
@@ -32,6 +33,7 @@ Shorten a URL.
 
 #### Options
 - `-i, --instance <instance>`: The instance to use. (default: `https://s.oriondev.fr`)
+- `-p, --password <password>`: The password for the shortened url. (default: `null`)
 
 ![Unshorten](docs/quecto%20unshorten.png)
 

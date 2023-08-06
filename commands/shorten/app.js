@@ -3,16 +3,18 @@ const axios = require("axios");
 const FormData = require("form-data");
 const colors = require("colors");
 
-function shorten(link, instance) {
+function shorten(link, options) {
   let formData = new FormData();
   formData.append("link", link);
 
-  if (!instance.instance) instance.instance = "https://s.oriondev.fr";
-  if (!instance.instance.startsWith("http")) instance.instance = `https://${instance.instance}`;
+  if (options.password) formData.append("password", options.password);
 
-  axios.get(`${instance.instance}/api/quectoCheck`).then((res) => {
+  if (!options.instance) options.instance = "https://s.oriondev.fr";
+  if (!options.instance.startsWith("http")) options.instance = `https://${options.instance}`;
+
+  axios.get(`${options.instance}/api/quectoCheck`).then((res) => {
     if (res.data.data.quecto) {
-      axios.post(`${instance.instance}/api/shorten`, formData, {}).then((res) => {
+      axios.post(`${options.instance}/api/shorten`, formData, {}).then((res) => {
         console.log(`Shortened link: ${res.data.data.shorten}`.brightGreen);
       })
     } else {
@@ -27,4 +29,5 @@ module.exports = createCommand("shorten")
   .description("Shorten a URL")
   .argument("<link>", "The link to shorten")
   .option("-i, --instance <instance>", "The instance to use")
+  .option("-p, --password <password>", "The password for shortened link")
   .action(shorten)
