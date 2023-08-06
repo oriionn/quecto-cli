@@ -6,6 +6,8 @@ Quecto-cli is a simple solution for use Quecto in a command line environment.
 npm install -g quecto-cli
 ```
 
+![Installation](docs/npm%20install.png)
+
 ## Usage
 ```bash
 quecto <command> [options]
@@ -21,6 +23,8 @@ Shorten a URL.
 #### Options
 - `-i, --instance <instance>`: The instance to use. (default: `https://s.oriondev.fr`) 
 
+![Shorten](docs/quecto%20shorten.png)
+
 ### unshorten
 
 #### Arguments
@@ -29,17 +33,24 @@ Shorten a URL.
 #### Options
 - `-i, --instance <instance>`: The instance to use. (default: `https://s.oriondev.fr`)
 
+![Unshorten](docs/quecto%20unshorten.png)
+
 ### ivi
 Know if a domain is a instance of Quecto.
 
 #### Arguments
 - `<instance>`: The instance to check.
 
+![ivi valid](docs/quecto%20ivi%20valid.png)
+![ivi invalid](docs/quecto%20ivi%20invalid.png)
+
 ### help
 Display help for a command.
 
 #### Arguments
 - `<command>`: The command to display help for.
+
+![Help](docs/quecto%20help.png)
 
 ## License
 [GPL3](https://github.com/oriionn/quecto-cli/blob/main/LICENSE)
