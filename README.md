@@ -6,7 +6,7 @@ Quecto-cli is a simple solution for use Quecto in a command line environment.
 npm install -g quecto-cli
 ```
 
-![Installation](docs/npm%20install.png)
+![Installation](docs/npm%20install.gif)
 
 ## Usage
 ```bash
@@ -24,7 +24,7 @@ Shorten a URL.
 - `-i, --instance <instance>`: The instance to use. (default: `https://s.oriondev.fr`) 
 - `-p, --password <password>`: The password for the shortened url. (default: `null`)
 
-![Shorten](docs/quecto%20shorten.png)
+![Shorten](docs/quecto%20shorten.gif)
 
 ### unshorten
 
@@ -35,7 +35,7 @@ Shorten a URL.
 - `-i, --instance <instance>`: The instance to use. (default: `https://s.oriondev.fr`)
 - `-p, --password <password>`: The password for the shortened url. (default: `null`)
 
-![Unshorten](docs/quecto%20unshorten.png)
+![Unshorten](docs/quecto%20unshorten.gif)
 
 ### ivi
 Know if a domain is a instance of Quecto.
@@ -43,8 +43,8 @@ Know if a domain is a instance of Quecto.
 #### Arguments
 - `<instance>`: The instance to check.
 
-![ivi valid](docs/quecto%20ivi%20valid.png)
-![ivi invalid](docs/quecto%20ivi%20invalid.png)
+![ivi valid](docs/quecto%20ivi%20valid.gif)
+![ivi invalid](docs/quecto%20ivi%20invalid.gif)
 
 ### help
 Display help for a command.
@@ -52,7 +52,7 @@ Display help for a command.
 #### Arguments
 - `<command>`: The command to display help for.
 
-![Help](docs/quecto%20help.png)
+![Help](docs/quecto%20help.gif)
 
 ## License
 [GPL3](https://github.com/oriionn/quecto-cli/blob/main/LICENSE)
