@@ -8,6 +8,6 @@ import (
 )
 
 func IsValidInstance(ctx context.Context, cmd *cli.Command) error {
-	fmt.Println(cmd.Args().First())
-    return nil
+	fmt.Println(cmd.StringArg("domain"))
+	return nil
 }
