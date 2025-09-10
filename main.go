@@ -30,8 +30,9 @@ func main() {
 						Aliases: []string{"c"},
 					},
 					&cli.IntFlag{
-						Name:    "expires",
-						Aliases: []string{"e"},
+						Name:        "expires",
+						DefaultText: "0",
+						Aliases:     []string{"e"},
 					},
 				},
 				Action: Shorten,
@@ -43,6 +44,12 @@ func main() {
 				Arguments: []cli.Argument{
 					&cli.StringArg{
 						Name: "domain",
+					},
+				},
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:    "password",
+						Aliases: []string{"p"},
 					},
 				},
 				Action: Unshorten,
