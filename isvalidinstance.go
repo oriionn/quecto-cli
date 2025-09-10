@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"net/http"
+	"strings"
 
 	"github.com/oriionn/quecto-cli/utils"
 	"github.com/urfave/cli/v3"
@@ -11,24 +11,28 @@ import (
 
 func IsValidInstance(ctx context.Context, cmd *cli.Command) error {
 	domain := cmd.StringArg("domain")
+	if strings.TrimSpace(domain) == "" {
+		fmt.Println(utils.ErrorStyle.Render("You haven't specified a domain."))
+		return nil
+	}
+
 	url, err := utils.FormatDomain(domain)
 	if err != nil {
 		return utils.PrintError(err)
 	}
 
-	reqUrl := fmt.Sprintf("%sapi/config", url)
-	res, err := http.Get(reqUrl)
+	isValid, err := utils.IsValidInstance(url)
 	if err != nil {
 		return utils.PrintError(err)
 	}
 
-	if res.StatusCode == 200 {
-		msg := fmt.Sprintf("%s is a Quecto instance.", domain)
+	if isValid {
+		msg := fmt.Sprintf("%s is a valid Quecto instance.", domain)
 		fmt.Println(utils.SuccessStyle.Render(msg))
-		return nil
+	} else {
+		msg := fmt.Sprintf("%s is a invalid Quecto instance.", domain)
+		fmt.Println(utils.ErrorStyle.Render(msg))
 	}
 
-	msg := fmt.Sprintf("%s is not a Quecto instance.", domain)
-	fmt.Println(utils.ErrorStyle.Render(msg))
 	return nil
 }
