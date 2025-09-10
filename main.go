@@ -56,7 +56,7 @@ func main() {
 			},
 			{
 				Name:    "ivi",
-				Aliases: []string{"i"},
+				Aliases: []string{"i", "isvalidinstance"},
 				Usage:   "Check if a domain is a instance of Quecto",
 				Arguments: []cli.Argument{
 					&cli.StringArg{
