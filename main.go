@@ -17,7 +17,7 @@ func main() {
 				Usage:   "Shorten a link",
 				Arguments: []cli.Argument{
 					&cli.StringArg{
-						Name: "domain",
+						Name: "link",
 					},
 				},
 				Flags: []cli.Flag{
@@ -43,7 +43,7 @@ func main() {
 				Usage:   "Unshorten a link",
 				Arguments: []cli.Argument{
 					&cli.StringArg{
-						Name: "domain",
+						Name: "link",
 					},
 				},
 				Flags: []cli.Flag{

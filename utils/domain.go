@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-var urlRegex = regexp.MustCompile(`^https?:\/\/([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:[0-9]+)?(\/.*)?$`)
+var UrlRegex = regexp.MustCompile(`^https?:\/\/([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:[0-9]+)?(\/.*)?$`)
 
 func FormatDomain(domain string) (string, error) {
 	originalDomain := domain
@@ -18,7 +18,7 @@ func FormatDomain(domain string) (string, error) {
 		domain += "/"
 	}
 
-	if !urlRegex.MatchString(domain) {
+	if !UrlRegex.MatchString(domain) {
 		return "", fmt.Errorf("invalid domain format: %s", originalDomain)
 	}
 
