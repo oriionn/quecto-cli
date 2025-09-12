@@ -63,10 +63,21 @@ func Shorten(ctx context.Context, cmd *cli.Command) error {
 		Link:       link,
 		Expiration: 0,
 	}
-	bodyString, _ := json.Marshal(body)
-
+	bodyString, err := json.Marshal(body)
+	if err != nil {
+		return utils.PrintError(err)
+	}
+	
+	
 	fetchUrl := fmt.Sprintf("%sapi/shorten", url)
-	res, err := http.Post(fetchUrl, string(bodyString), nil)
+	req, err := http.NewRequest(http.MethodPost, fetchUrl, strings.NewReader(string(bodyString)))
+	if err != nil {
+		return utils.PrintError(err)
+	}
+
+	req.Header.Add("accept", "application/json")
+	client := &http.Client{}
+	res, err := client.Do(req)
 	if err != nil {
 		return utils.PrintError(err)
 	}
@@ -83,6 +94,7 @@ func Shorten(ctx context.Context, cmd *cli.Command) error {
 		return utils.PrintError(err)
 	}
 
-	fmt.Println(utils.SuccessStyle.Render(result.Data.Link))
+	link = fmt.Sprintf("%s%s", url, result.Data.ShortCode)
+	fmt.Println(utils.SuccessStyle.Render(link))
 	return nil
 }
