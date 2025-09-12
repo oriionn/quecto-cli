@@ -100,6 +100,7 @@ func Shorten(ctx context.Context, cmd *cli.Command) error {
 	defer res.Body.Close()
 
 	if res.StatusCode != 200 {
+		// TODO : Read the error from the body
 		fmt.Println(utils.ErrorStyle.Render("An internal error occurred on the instance."))
 		return nil
 	}
