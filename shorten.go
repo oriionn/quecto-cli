@@ -43,8 +43,7 @@ func Shorten(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	if utils.IsEmpty(link) {
-		fmt.Println(utils.ErrorStyle.Render("You haven't specified a link to shorten."))
-		return nil
+		return utils.PrintErr("You haven't specified a link to shorten.")
 	}
 
 	url, err := utils.FormatDomain(domain)
@@ -58,13 +57,11 @@ func Shorten(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	if !isValid {
-		fmt.Println(utils.ErrorStyle.Render("Your instance is invalid"))
-		return nil
+		return utils.PrintErr("Your instance is invalid")
 	}
 
 	if !utils.UrlRegex.MatchString(link) {
-		fmt.Println(utils.ErrorStyle.Render("Invalid URL"))
-		return nil
+		return utils.PrintErr("Invalid URL")
 	}
 
 	body := ShortenBody{
@@ -99,16 +96,18 @@ func Shorten(ctx context.Context, cmd *cli.Command) error {
 	}
 	defer res.Body.Close()
 
-	if res.StatusCode != 200 {
-		// TODO : Read the error from the body
-		fmt.Println(utils.ErrorStyle.Render("An internal error occurred on the instance."))
-		return nil
-	}
-
 	var result ShortenResponse
 	err = json.NewDecoder(res.Body).Decode(&result)
 	if err != nil {
 		return utils.PrintError(err)
+	}
+
+	if res.StatusCode != 200 {
+		if !utils.IsEmpty(result.Message) {
+			return utils.PrintErr(result.Message)
+		}
+
+		return utils.PrintErr("An internal error occurred on the instance.")
 	}
 
 	link = fmt.Sprintf("%s%s", url, result.Data.ShortCode)

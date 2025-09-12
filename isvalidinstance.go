@@ -12,8 +12,7 @@ import (
 func IsValidInstance(ctx context.Context, cmd *cli.Command) error {
 	domain := cmd.StringArg("domain")
 	if strings.TrimSpace(domain) == "" {
-		fmt.Println(utils.ErrorStyle.Render("You haven't specified a domain."))
-		return nil
+		return utils.PrintErr("You haven't specified a domain.")
 	}
 
 	url, err := utils.FormatDomain(domain)
