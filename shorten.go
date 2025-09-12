@@ -33,10 +33,18 @@ type ShortenResponseData struct {
 
 func Shorten(ctx context.Context, cmd *cli.Command) error {
 	domain := cmd.String("domain")
+	expiration := cmd.Int("expires")
+	password := cmd.String("password")
+	shortCode := cmd.String("code")
 	link := cmd.StringArg("link")
 
-	if strings.TrimSpace(domain) == "" {
+	if utils.IsEmpty(domain) {
 		domain = "https://s.oriondev.fr/"
+	}
+
+	if utils.IsEmpty(link) {
+		fmt.Println(utils.ErrorStyle.Render("You haven't specified a link to shorten."))
+		return nil
 	}
 
 	url, err := utils.FormatDomain(domain)
@@ -61,8 +69,16 @@ func Shorten(ctx context.Context, cmd *cli.Command) error {
 
 	body := ShortenBody{
 		Link:       link,
-		Expiration: 0,
+		Expiration: expiration,
 	}
+
+	if !utils.IsEmpty(password) {
+		body.Password = password
+	}
+	if !utils.IsEmpty(shortCode) {
+		body.CustomShortCode = shortCode
+	}
+
 	bodyString, err := json.Marshal(body)
 	if err != nil {
 		return utils.PrintError(err)
@@ -75,7 +91,7 @@ func Shorten(ctx context.Context, cmd *cli.Command) error {
 		return utils.PrintError(err)
 	}
 
-	req.Header.Add("accept", "application/json")
+	req.Header.Add("Content-Type", "application/json")
 	client := &http.Client{}
 	res, err := client.Do(req)
 	if err != nil {
