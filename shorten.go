@@ -51,13 +51,13 @@ func Shorten(ctx context.Context, cmd *cli.Command) error {
 		return utils.PrintError(err)
 	}
 
-	isValid, err := utils.IsValidInstance(url)
+	config, err := utils.GetConfig(url)
 	if err != nil {
 		return utils.PrintError(err)
 	}
 
-	if !isValid {
-		return utils.PrintErr("Your instance is invalid")
+	if expiration == -1 {
+		expiration = config.Expirations[0].Minutes
 	}
 
 	if !utils.UrlRegex.MatchString(link) {
@@ -72,8 +72,13 @@ func Shorten(ctx context.Context, cmd *cli.Command) error {
 	if !utils.IsEmpty(password) {
 		body.Password = password
 	}
+
 	if !utils.IsEmpty(shortCode) {
-		body.CustomShortCode = shortCode
+		if config.AuthorizeCustomCode {
+			body.CustomShortCode = shortCode
+		} else {
+			return utils.PrintErr("Short codes is not authorized")
+		}
 	}
 
 	bodyString, err := json.Marshal(body)

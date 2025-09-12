@@ -31,7 +31,7 @@ func main() {
 					},
 					&cli.IntFlag{
 						Name:        "expires",
-						DefaultText: "0",
+						DefaultText: "-1",
 						Aliases:     []string{"e"},
 					},
 				},
