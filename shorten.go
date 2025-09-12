@@ -67,10 +67,10 @@ func Shorten(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return utils.PrintError(err)
 	}
-	
-	
+
 	fetchUrl := fmt.Sprintf("%sapi/shorten", url)
-	req, err := http.NewRequest(http.MethodPost, fetchUrl, strings.NewReader(string(bodyString)))
+	bodyReader := strings.NewReader(string(bodyString))
+	req, err := http.NewRequest(http.MethodPost, fetchUrl, bodyReader)
 	if err != nil {
 		return utils.PrintError(err)
 	}
