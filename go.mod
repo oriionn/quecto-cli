@@ -1,4 +1,4 @@
-module github.com/oriionn/quecto-cli
+module github.com/oriionn/quecto-cli/v2
 
 go 1.24.6
 
