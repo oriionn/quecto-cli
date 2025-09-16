@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/oriionn/quecto-cli/config"
-	"github.com/oriionn/quecto-cli/utils"
+	"github.com/oriionn/quecto-cli/v2/config"
+	"github.com/oriionn/quecto-cli/v2/utils"
 	"github.com/urfave/cli/v3"
 )
 

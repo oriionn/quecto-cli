@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/oriionn/quecto-cli/utils"
+	"github.com/oriionn/quecto-cli/v2/utils"
 	"github.com/urfave/cli/v3"
 )
 
